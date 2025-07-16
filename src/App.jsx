@@ -11,35 +11,53 @@ function App() {
   const [cart, setCart] = useState([])
 
 
-  function addToCart(item){
+  function addToCart(item) {
     // console.log("Agregando al carrito")
     const itemExist = cart.findIndex(guitar => guitar.id === item.id)
     console.log(itemExist)
 
-    if(itemExist >=  0){
+    if (itemExist >= 0) {
       console.log("Item existe")
       const updateCart = [...cart]
       updateCart[itemExist].quantity++
       setCart(updateCart)
-    }else{
+    } else {
       // console.log("No existe agregando...")
       item.quantity = 1
       setCart([...cart, item])
     }
 
-    
+
   }
 
 
-  function removeFromCart(id){
+  function removeFromCart(id) {
     setCart((prevCart) => prevCart.filter(guitar => guitar.id !== id))
   }
 
+
+  function increaseQuantity(id) {
+    // console.log("incrementenado... ", id)
+    const updateCart = cart.map(item => {
+      if (item.id === id) {
+
+        return {
+          ...item,
+          quantity: item.quantity + 1
+        }
+      }
+      return item
+    })
+    setCart(updateCart)
+  }
+
+
   return (
     <>
-      <Header 
+      <Header
         cart={cart}
         removeFromCart={removeFromCart}
+        increaseQuantity={increaseQuantity}
       />
 
       <main className="container-xl mt-5">
@@ -52,11 +70,11 @@ function App() {
               //CONCEPTO DE PROPS  Y FRAGMENTS
 
               <Guitar
-                key={guitar.id} 
-                guitar={guitar} 
+                key={guitar.id}
+                guitar={guitar}
                 // cart={cart} 
                 setCart={setCart}
-                addToCart={addToCart} 
+                addToCart={addToCart}
               />
             )
           }

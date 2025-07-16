@@ -12,6 +12,7 @@ function App() {
 
 
   const MAX_ITEM = 5
+  const MIN_ITEM = 1
 
   function addToCart(item) {
     // console.log("Agregando al carrito")
@@ -19,6 +20,9 @@ function App() {
     console.log(itemExist)
 
     if (itemExist >= 0) {
+
+      if(cart[itemExist].quantity >= MAX_ITEM) return
+
       console.log("Item existe")
       const updateCart = [...cart]
       updateCart[itemExist].quantity++
@@ -55,6 +59,16 @@ function App() {
 
   function decreaseQuantity(id){
     // console.log("disminuyendo... ", id)
+    const updateCart = cart.map(item =>{
+      if(item.id === id && item.quantity > MIN_ITEM){
+        return{
+          ...item,
+          quantity: item.quantity - 1
+        }
+      }
+      return item
+    })
+    setCart(updateCart)
   }
 
   return (

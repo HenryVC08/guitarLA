@@ -1,6 +1,6 @@
 
 import { useMemo } from "react"
-export default function Header({ cart, removeFromCart,increaseQuantity,decreaseQuantity}) {
+export default function Header({ cart, removeFromCart,increaseQuantity,decreaseQuantity, clearCart}) {
 
     //state DERIVADO
 
@@ -20,7 +20,7 @@ export default function Header({ cart, removeFromCart,increaseQuantity,decreaseQ
                         <div
                             className="carrito"
                         >
-                            <img className="img-fluid" src="./public/img/carrito.png" alt="imagen carrito" />
+                            <img className="img-fluid" src="./img/carrito.png" alt="imagen carrito" />
 
                             <div id="carrito" className="bg-white p-3">
 
@@ -100,7 +100,10 @@ export default function Header({ cart, removeFromCart,increaseQuantity,decreaseQ
 
 
 
-                                <button className="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
+                                <button 
+                                className="btn btn-dark w-100 mt-3 p-2"
+                                onClick={clearCart}
+                                >Vaciar Carrito</button>
                             </div>
 
 

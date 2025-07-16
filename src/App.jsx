@@ -11,6 +11,8 @@ function App() {
   const [cart, setCart] = useState([])
 
 
+  const MAX_ITEM = 5
+
   function addToCart(item) {
     // console.log("Agregando al carrito")
     const itemExist = cart.findIndex(guitar => guitar.id === item.id)
@@ -39,7 +41,7 @@ function App() {
   function increaseQuantity(id) {
     // console.log("incrementenado... ", id)
     const updateCart = cart.map(item => {
-      if (item.id === id) {
+      if (item.id === id && item.quantity < MAX_ITEM) {
 
         return {
           ...item,
@@ -51,6 +53,9 @@ function App() {
     setCart(updateCart)
   }
 
+  function decreaseQuantity(id){
+    // console.log("disminuyendo... ", id)
+  }
 
   return (
     <>
@@ -58,6 +63,7 @@ function App() {
         cart={cart}
         removeFromCart={removeFromCart}
         increaseQuantity={increaseQuantity}
+        decreaseQuantity={decreaseQuantity}
       />
 
       <main className="container-xl mt-5">

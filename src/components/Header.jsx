@@ -1,6 +1,6 @@
 
 import { useMemo } from "react"
-export default function Header({ cart, removeFromCart,increaseQuantity }) {
+export default function Header({ cart, removeFromCart,increaseQuantity,decreaseQuantity}) {
 
     //state DERIVADO
 
@@ -62,6 +62,7 @@ export default function Header({ cart, removeFromCart,increaseQuantity }) {
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-dark"
+                                                                onClick={()=>decreaseQuantity(guitar.id)}
                                                             >
                                                                 -
                                                             </button>
